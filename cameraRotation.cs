@@ -13,7 +13,9 @@ public class CameraRotation : MonoBehaviour {
 		float rotationSpeed = 3.0f;
 		float mouseX = Input.GetAxis ("Mouse X") * rotationSpeed;
 		float mouseY = Input.GetAxis ("Mouse Y") * rotationSpeed;
-		transform.rotation = Quaternion.Euler (-mouseY, mouseX, 0) * transform.rotation;
-
+		//need to change rotation to local to prevent tilting
+		transform.localRotation = Quaternion.Euler (-mouseY, mouseX, 0) * transform.localRotation;
+		Camera camera = GetComponentInChildren<Camera>;
+		camera.transform.localRotation = Quaternion.Euler (-mouseY, 0, 0) * camera.transform.localRotation;
 	}
 }
